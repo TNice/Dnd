@@ -75,6 +75,21 @@ namespace DnD_Project.Game
 
         }
 
+        public void Attack(NPC target, float amount)
+        {
+
+        }
+
+        public void HealAI(NPC target, float amount)
+        {
+
+        }
+
+        public void HealPlayer(Player target, float amount)
+        {
+
+        }
+
         public float GetAttributeFromPlayer(Player p, string attribute)
         {
             var result = p.GetType().GetField(attribute).GetValue(p);
