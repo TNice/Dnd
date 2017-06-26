@@ -12,9 +12,9 @@ namespace DnD_Project.Game
     class Player
     {
         //Player Info
-        protected string name;
-        protected int id;
-        protected Race race;
+        public string name;
+        public int id;
+        public Race race;
         public enum playerState
         {
             Waiting,
@@ -35,17 +35,61 @@ namespace DnD_Project.Game
 
         public float GetAttribute(string attribute)
         {
-            return 0;
+            var result = GetType().GetField(attribute).GetValue(this);
+            return (float)result;
+        }
+
+        public List<Item> GetInv()
+        {
+            return this.inv;
+        }
+
+        public void AddItemToInv(Item item)
+        {
+            inv.Add(item);
+        }
+
+        public void RemoveItemFromInv(Item item)
+        {
+            inv.Remove(item);
+        }
+
+        public void UseItem(ref Item item)
+        {
+            if(!item.isUseable)
+            {
+                //Give Error Message
+                return;
+            }
+
+            if (item.currentUses <= 0)
+            {
+                RemoveItemFromInv(item);
+                return;
+            }
+
+            item.Use();
+            item.currentUses--;
+
+            if (item.currentUses == 0) RemoveItemFromInv(item);
+
         }
 
         public float GetAttributeFromPlayer(Player p, string attribute)
         {
-            return 0;
+            var result = p.GetType().GetField(attribute).GetValue(p);
+            return (float)result;
         }
 
-        public float GetAttributFromAI(NPC npc, string Attrbute)
+        public float GetAttributFromAI(NPC npc, string attribute)
         {
-            return 0;
+            var result = npc.GetType().GetField(attribute).GetValue(npc);
+            return (float)result;
+        }
+
+        public List<Item> GetAiInv(NPC npc)
+        {
+            return npc.GetInv();
         }
     
         //Overrides ToString function to print name and race of the player

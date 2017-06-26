@@ -8,6 +8,10 @@ namespace DnD_Project.Game.Items
 {
     class Item
     {
+        protected int maxUses { get; set; }
+        public int currentUses { get; set; }
+        public bool isUseable { get; set; }
 
+        public void Use() { }
     }
 }

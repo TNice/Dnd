@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DnD_Project.Game.Items;
 
 namespace DnD_Project.Game.NPCs
 {
@@ -13,5 +14,12 @@ namespace DnD_Project.Game.NPCs
 
         //Attrinbutes
         protected string strength { get; set; }
+        protected List<Item> inv { get; set; }
+
+        public List<Item> GetInv()
+        {
+            return this.inv;
+        }
+
     }
 }
